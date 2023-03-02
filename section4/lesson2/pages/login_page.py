@@ -8,7 +8,7 @@ class LoginPage(BasePage):
         assert 'login' in current_url, f'Expected "login" in url, got {current_url}'
 
     def should_be_login_form(self):
-        assert self.is_element_present(*LoginPageLocators.LOGIN_FORM), 'Not found Login Form'
+        assert self.is_element_present(*LoginPageLocators.LOGIN_FORM_LOCATOR), 'Not found Login Form'
 
     def should_be_register_form(self):
-        assert self.is_element_present(*LoginPageLocators.REGISTRATION_FORM), 'Not found Registration Form'
+        assert self.is_element_present(*LoginPageLocators.REGISTRATION_FORM_LOCATOR), 'Not found Registration Form'

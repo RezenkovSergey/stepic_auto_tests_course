@@ -6,13 +6,21 @@ class MainPageLocators:
 
 
 class LoginPageLocators:
-    LOGIN_FORM = (By.ID, 'login_form')
-    LOGIN_EMAIL = (By.ID, 'id_login-username')
-    LOGIN_PASSWORD = (By.ID, 'id_login-password')
-    LOGIN_SUBMIT_BTN = (By.NAME, 'login_submit')
+    LOGIN_FORM_LOCATOR = (By.ID, 'login_form')
+    LOGIN_EMAIL_LOCATOR = (By.ID, 'id_login-username')
+    LOGIN_PASSWORD_LOCATOR = (By.ID, 'id_login-password')
+    LOGIN_SUBMIT_BTN_LOCATOR = (By.NAME, 'login_submit')
 
-    REGISTRATION_FORM = (By.ID, 'register_form')
-    REGISTRATION_EMAIL = (By.ID, 'id_registration-email')
-    REGISTRATION_PASSWORD = (By.ID, 'id_registration-password1')
-    REGISTRATION_CONFIRM_PWD = (By.ID, 'id_registration-password2')
-    REGISTRATION_SUBMIT_BTN = (By.NAME, 'registration_submit')
+    REGISTRATION_FORM_LOCATOR = (By.ID, 'register_form')
+    REGISTRATION_EMAIL_LOCATOR = (By.ID, 'id_registration-email')
+    REGISTRATION_PASSWORD_LOCATOR = (By.ID, 'id_registration-password1')
+    REGISTRATION_CONFIRM_PWD_LOCATOR = (By.ID, 'id_registration-password2')
+    REGISTRATION_SUBMIT_BTN_LOCATOR = (By.NAME, 'registration_submit')
+
+
+class ProductPageLocators:
+    ADD_BASKET_BUTTON_LOCATOR = (By.CLASS_NAME, 'btn-add-to-basket')
+    ADDED_PRODUCT_NAME_LOCATOR = (By.XPATH, "//div[@class='alertinner ']/strong[1]")
+    BASKET_VALUE_LOCATOR = (By.XPATH, "//div[@class='alertinner ']/p/strong")
+    PRODUCT_NAME_LOCATOR = (By.CSS_SELECTOR, '.product_main>h1')
+    PRODUCT_COST_LOCATOR = (By.CSS_SELECTOR, '.product_main>.price_color')
