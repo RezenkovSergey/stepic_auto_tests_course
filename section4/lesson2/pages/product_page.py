@@ -15,7 +15,7 @@ class ProductPage(BasePage):
 
     def should_be_message_with_added_product(self, product_name):
         added_product_name = self.browser.find_element(*ProductPageLocators.ADDED_PRODUCT_NAME_LOCATOR).text
-        assert product_name == added_product_name, f'Expected product name: {product_name}, got: {product_name}'
+        assert product_name == added_product_name, f'Expected product name: {product_name}, got: {added_product_name}'
 
     def check_basket_value(self, product_cost):
         basket_value = self.browser.find_element(*ProductPageLocators.BASKET_VALUE_LOCATOR).text
