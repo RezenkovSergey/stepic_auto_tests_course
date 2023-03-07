@@ -33,7 +33,7 @@ def test_add_product_to_basket(browser, link):
     product_page.check_added_product(product_name, product_cost)
 
 
-@pytest.mark.parametrize('link', [Links.NEW_YEAR_LINK])
+@pytest.mark.parametrize('link', [Links.NEW_YEAR_PRODUCT_LINK])
 def test_guest_cant_see_success_message_after_adding_product_to_basket(browser, link):
     product_page = ProductPage(browser, link)
     product_page.open()
@@ -41,14 +41,14 @@ def test_guest_cant_see_success_message_after_adding_product_to_basket(browser, 
     product_page.should_not_be_success_messages()
 
 
-@pytest.mark.parametrize('link', [Links.NEW_YEAR_LINK])
+@pytest.mark.parametrize('link', [Links.NEW_YEAR_PRODUCT_LINK])
 def test_guest_cant_see_success_message(browser, link):
     product_page = ProductPage(browser, link)
     product_page.open()
     product_page.should_not_be_success_messages()
 
 
-@pytest.mark.parametrize('link', [Links.NEW_YEAR_LINK])
+@pytest.mark.parametrize('link', [Links.NEW_YEAR_PRODUCT_LINK])
 def test_message_disappeared_after_adding_product_to_basket(browser, link):
     product_page = ProductPage(browser, link)
     product_page.open()

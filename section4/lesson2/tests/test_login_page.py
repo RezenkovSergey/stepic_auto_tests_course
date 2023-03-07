@@ -13,15 +13,15 @@ def login_page(browser, url):
 
 
 def test_should_be_present_login_form(browser):
-    login_pg = login_page(browser, Links.SELENIUM_LINK)
+    login_pg = login_page(browser, Links.MAIN_PAGE_LINK)
     login_pg.should_be_login_form()
 
 
 def test_should_be_present_registration_form(browser):
-    login_pg = login_page(browser, Links.SELENIUM_LINK)
+    login_pg = login_page(browser, Links.MAIN_PAGE_LINK)
     login_pg.should_be_register_form()
 
 
 def test_should_be_login_url(browser):
-    login_pg = login_page(browser, Links.SELENIUM_LINK)
+    login_pg = login_page(browser, Links.MAIN_PAGE_LINK)
     login_pg.should_be_login_url()
