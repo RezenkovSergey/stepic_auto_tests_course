@@ -1,5 +1,6 @@
 import pytest
 
+from section4.lesson2.pages.basket_page import BasketPage
 from section4.lesson2.pages.login_page import LoginPage
 from section4.lesson2.pages.product_page import ProductPage
 from section4.lesson2.pages.locators import ProductPageLocators
@@ -70,3 +71,13 @@ def test_guest_can_go_to_login_page_from_product_page(browser, link):
     page.go_to_login_page()
     login_page = LoginPage(browser, browser.current_url)
     login_page.should_be_login_form()
+
+
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    page = ProductPage(browser, Links.CITY_AND_STARS_LINK)
+    page.open()
+    page.go_to_basket()
+    basket_page = BasketPage(browser, browser.current_url)
+    basket_page.should_be_empty_basket()
+    basket_page.should_be_message_for_empty_basket()
+
