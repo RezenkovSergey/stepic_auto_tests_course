@@ -1,5 +1,6 @@
 import pytest
 
+from section4.lesson2.pages.login_page import LoginPage
 from section4.lesson2.pages.product_page import ProductPage
 from section4.lesson2.pages.locators import ProductPageLocators
 from section4.lesson2.tests.links import Links
@@ -53,3 +54,19 @@ def test_message_disappeared_after_adding_product_to_basket(browser, link):
     product_page.open()
     product_page.add_product_to_basket()
     product_page.should_be_disappeared_success_msg()
+
+
+@pytest.mark.parametrize('link', [Links.CITY_AND_STARS_LINK])
+def test_guest_should_see_login_link_on_product_page(browser, link):
+    page = ProductPage(browser, link)
+    page.open()
+    page.should_be_login_link()
+
+
+@pytest.mark.parametrize('link', [Links.CITY_AND_STARS_LINK])
+def test_guest_can_go_to_login_page_from_product_page(browser, link):
+    page = ProductPage(browser, link)
+    page.open()
+    page.go_to_login_page()
+    login_page = LoginPage(browser, browser.current_url)
+    login_page.should_be_login_form()
