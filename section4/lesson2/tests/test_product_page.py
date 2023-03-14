@@ -1,7 +1,10 @@
+import time
+
 import pytest
 
 from section4.lesson2.pages.basket_page import BasketPage
 from section4.lesson2.pages.login_page import LoginPage
+from section4.lesson2.pages.main_page import MainPage
 from section4.lesson2.pages.product_page import ProductPage
 from section4.lesson2.pages.locators import ProductPageLocators
 from section4.lesson2.tests.links import Links
@@ -80,4 +83,36 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     basket_page = BasketPage(browser, browser.current_url)
     basket_page.should_be_empty_basket()
     basket_page.should_be_message_for_empty_basket()
+
+
+@pytest.mark.user_test
+class TestUserAddToBasketFromProductPage:
+
+    @pytest.fixture(scope="function", autouse=True)
+    def setup(self, browser):
+        main_page = MainPage(browser, Links.MAIN_PAGE_LINK)
+        main_page.open()
+        main_page.go_to_login_page()
+        login_page = LoginPage(browser, browser.current_url)
+        email = f'{time.time()}@fakemail.org'
+        password = time.time()
+        login_page.register_new_user(email, password)
+        login_page.should_be_authorized_user()
+        return browser
+
+    def test_user_cant_see_success_message(self, browser):
+        product_page = ProductPage(browser, Links.CITY_AND_STARS_LINK)
+        product_page.open()
+        product_page.should_not_be_success_messages()
+
+    def test_add_product_to_basket(self, browser):
+        product_page = ProductPage(browser, Links.CITY_AND_STARS_LINK)
+        product_page.open()
+
+        product_name = product_page.get_product_name()
+        product_cost = product_page.get_product_cost()
+
+        product_page.is_element_present(*ProductPageLocators.ADD_BASKET_BUTTON_LOCATOR)
+        product_page.add_product_to_basket()
+        product_page.check_added_product(product_name, product_cost)
 
